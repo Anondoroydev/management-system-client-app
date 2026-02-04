@@ -174,7 +174,8 @@ export default function Footer() {
                   aria-label={link.label}
                   className="w-9 h-9 rounded-full bg-gray-700 dark:bg-gray-600 flex justify-center items-center hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors duration-300"
                 >
-                  {link.icon}
+                      {link.icon}
+                      
                 </a>
               ))}
             </div>
