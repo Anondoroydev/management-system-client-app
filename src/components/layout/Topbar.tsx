@@ -1,14 +1,11 @@
-import { Calendar, Mail, Phone } from 'lucide-react'
-import { FaFacebookF } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaVimeoV } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-
+import { Calendar, Mail, Phone } from "lucide-react"
+import { FaFacebookF, FaLinkedinIn, FaVimeoV } from "react-icons/fa"
+import { FaXTwitter } from "react-icons/fa6"
 
 export const Topbar = () => {
     return (
         <>
-            <div className="w-full bg-[#4da528] font-jakarta text-white px-6 flex items-center justify-between" >
+            <div className="w-full bg-[#4da528] font-jakarta text-white px-6 flex items-center justify-between">
                 {/* left side */}
                 <div className="flex items-center gap-10 text-[15px] font-normal">
                     <div className="hidden md:flex items-center  gap-1"><Calendar size={20}/>Thursday, Mar 26, 2021</div>

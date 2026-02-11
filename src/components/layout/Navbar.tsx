@@ -1,10 +1,12 @@
-import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { ModeToggle } from "./ModeToggle";
+import { Topbar } from "./Topbar";
 
-
-import { ModeToggle } from "./ModeToggle"
-import { Topbar } from "./Topbar"
-import { Button } from "../ui/ButtonMain"
+const navlink = [
+  { href: "#about", labal: "About" },
+  { href: "#project", labal: "Project" },
+  { href: "#contact", labal: "Contact" },
+  { href: "#experience", labal: "Experience" },
+];
 
  const navlink=[
     {href :"#tour", label :"Tour"},
