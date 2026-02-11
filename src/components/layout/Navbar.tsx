@@ -1,61 +1,60 @@
+import { ModeToggle } from "./ModeToggle"
+import { Topbar } from "./Topbar"
 
-export default function Navbar() {
+
+const navlink = [
+  { href: "#about", labal: "About" },
+  { href: "#project", labal: "Project" },
+  { href: "#contact", labal: "Contact" },
+  { href: "#experience", labal: "Experience" },
+]
+
+export const Navbar = () => {
   return (
-    <header className="w-full">
-      {/* Top Bar */}
-      <div className="bg-gray-100 text-sm">
-        <div className="max-w-7xl mx-auto flex justify-between px-4 py-2">
-          <div className="flex gap-4">
-            <span>Thursday, March 26, 2021</span>
-            <span>support@example.com</span>
-            <span>684 555-0102 490</span>
-          </div>
+    
+    <div>
+       {/* Top Bar */}
+    <Topbar/>
+      <div className="header relative flex items-center p-4 container mx-auto">
 
-          <div className="flex gap-4 items-center">
-            <button className="text-green-600 font-medium">
-              Booking Now
-            </button>
-            <span>FB</span>
-            <span>TW</span>
-            <span>IN</span>
+        {/* LOGO (left) */}
+        <div className="nav font-extrabold text-2xl">
+          PM.
+        </div>
+
+        {/* NAV LINKS (center) */}
+        <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="flex items-center gap-4 font-semibold">
+            {navlink.map((link, index) => (
+              <a
+                href={link.href}
+                key={index}
+                className="px-4 py-2"
+              >
+                {link.labal}
+              </a>
+            ))}
           </div>
         </div>
-      </div>
+{/* sun moon toggle */}
+<ModeToggle/>
 
-      {/* Main Navbar */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
-          
-          {/* Logo */}
-          <div className="flex items-center gap-2 font-bold text-xl">
-            ✈ Vitour
-          </div>
-
-          {/* Menu */}
-          <nav className="flex gap-6 font-medium">
-            <a href="#">Home</a>
-            <a href="#">Tour</a>
-            <a href="#">Destination</a>
-            <a href="#">Blog</a>
-            <a href="#">Pages</a>
-            <a href="#">Dashboard</a>
-            <a href="#" className="text-green-600">
-              Contact
-            </a>
-          </nav>
-
-          {/* Right Actions */}
-          <div className="flex gap-4 items-center">
-            <span>EN</span>
-            <span>USD</span>
-            <span>🔍</span>
-            <button className="border px-4 py-1 rounded">
-              Sign in
-            </button>
-          </div>
+        {/* BUTTONS (right) */}
+        <div className="ml-auto flex gap-3">
+          <button className="px-4 py-2 border rounded-lg">
+            Register
+          </button>
+          <button className="px-4 py-2 bg-black text-white rounded-lg">
+            Sign In
+          </button>
         </div>
+
       </div>
-    </header>
+    </div>
   )
 }
+
+
+
+// ------------------------------------
 
