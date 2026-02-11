@@ -7,7 +7,7 @@ export const router = createBrowserRouter([
     path: "/",
   },
   {
-    Component: Regis,
+    // Component: Regis,
     path: "/register",
   },
 ]);
