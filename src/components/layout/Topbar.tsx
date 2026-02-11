@@ -21,10 +21,10 @@ export const Topbar = () => {
                     <div className="hidden lg:block underline underline-offset-1 font-medium text-[14px] ">Booking Now</div>
                     <div className="hidden lg:block font-medium text-[15px] ">Follow Us :</div>
                     <div className="flex items-center text-[#472a04] gap-6 bg-[#ff970d] py-5 px-8 font-[10px]">
-                        <FaFacebookF className=' text-[14px]'/>
-                        <FaXTwitter className=' text-[14px]' />
-                        <FaVimeoV className=' text-[14px]'/>
-                        <FaLinkedinIn className=' text-[14px]'/>
+                        <FaFacebookF className=' text-[14px] hover:text-[#4da528] '/>
+                        <FaXTwitter className=' text-[14px]  hover:text-[#4da528] ' />
+                        <FaVimeoV className=' text-[14px]  hover:text-[#4da528] '/>
+                        <FaLinkedinIn className=' text-[14px]  hover:text-[#4da528] '/>
 
 
                     </div>
