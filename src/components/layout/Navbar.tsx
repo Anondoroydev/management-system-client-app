@@ -1,61 +1,66 @@
+import { useState } from "react";
+import { ModeToggle } from "./ModeToggle";
+import { Topbar } from "./Topbar";
+import { Menu, X } from "lucide-react";
+import { Button } from "../ui/ButtonMain";
 
-export default function Navbar() {
+
+
+ const navlink=[
+    {href :"#tour", label :"Tour"},
+    {href :"#destination", label :"Destination"},
+    {href :"#blog", label :"Blog"},
+    {href :"#dashboard", label :"Dashboar"},
+    {href :"#contact", label :"Contact"},
+ ]
+export const Navbar = () => {
+    const [isMobileMenuOpen,setIsMobileMenuOpen]=useState(false)
   return (
-    <header className="w-full">
-      {/* Top Bar */}
-      <div className="bg-gray-100 text-sm">
-        <div className="max-w-7xl mx-auto flex justify-between px-4 py-2">
-          <div className="flex gap-4">
-            <span>Thursday, March 26, 2021</span>
-            <span>support@example.com</span>
-            <span>684 555-0102 490</span>
-          </div>
-
-          <div className="flex gap-4 items-center">
-            <button className="text-green-600 font-medium">
-              Booking Now
-            </button>
-            <span>FB</span>
-            <span>TW</span>
-            <span>IN</span>
-          </div>
+    
+   <header className=" animate-fade-in  m-0   bg-white  ">
+    <Topbar/>
+    <nav className=" mx-auto   pr-4 flex justify-between items-center  ">
+       <div className="bg-[#081e2a] py-8 px-18     [clip-path:polygon(0_0,80%_0,100%_100%,0_100%)] "> <img src="/public/logo.png" alt="" className="w-32 h-auto"/>
+        {/* desktop vertion */}</div>
+        <div>
+            <div className=" hidden md:flex  gap-5 px-3  " >
+                {navlink.map((link,index)=> (
+                <a href={link.href} key={index} className="font-jakarta font-semibold  text-[16px] px-3  hover:text-[#4da528] rounded-full duration-300 text-[#081e7d] tracking-wide">{link.label} </a>
+                ))}
+            </div>
         </div>
-      </div>
-
-      {/* Main Navbar */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
-          
-          {/* Logo */}
-          <div className="flex items-center gap-2 font-bold text-xl">
-            ✈ Vitour
-          </div>
-
-          {/* Menu */}
-          <nav className="flex gap-6 font-medium">
-            <a href="#">Home</a>
-            <a href="#">Tour</a>
-            <a href="#">Destination</a>
-            <a href="#">Blog</a>
-            <a href="#">Pages</a>
-            <a href="#">Dashboard</a>
-            <a href="#" className="text-green-600">
-              Contact
-            </a>
-          </nav>
-
-          {/* Right Actions */}
-          <div className="flex gap-4 items-center">
-            <span>EN</span>
-            <span>USD</span>
-            <span>🔍</span>
-            <button className="border px-4 py-1 rounded">
-              Sign in
-            </button>
-          </div>
+        {/* buttonn */}
+        <div className="hidden md:flex items-center gap-3 font-semibold text-[16px] font-jakarta left-0 ">
+           <ModeToggle/>
+           <Button size="default" className="bg-[#ff970d] ">Sign in </Button>
+           <Button size="default" className="bg-[#4da528] hover:bg-[#ff970d]">Register</Button>
         </div>
-      </div>
-    </header>
+        {/* Mobile Menu button */}
+        <div className="md:hidden p-2 text-foreground " 
+        
+        onClick={()=> setIsMobileMenuOpen((prev) => !prev)}>
+            <button>
+              { isMobileMenuOpen ? <X size={24}/>: <Menu size={24}/>}
+            </button>
+        </div>
+       
+    </nav>
+     {/* Mobile nav bar */}
+       {isMobileMenuOpen &&(
+         <div className="animate-fade-in transition-all md:hidden  px-5 py-5  min-h-screen justify-center items-center  ">
+            <div className=" flex flex-col gap-y-10 items-center">
+               {navlink.map((link,index)=>
+               <a href={link.href} 
+               key={index} 
+               className="text-lg font-semibold  " >{link.label}</a>
+
+            )}
+             <Button size="default" className="w-[80%]  "> Contact</Button>
+            </div>
+        </div>
+
+       )}
+   </header>
+   
   )
 }
-

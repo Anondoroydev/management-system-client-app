@@ -2,8 +2,12 @@ import App from "@/App";
 import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
-    {
-        Component: App,
-        path: "/",
-    }
-])
+  {
+    Component: App,
+    path: "/",
+  },
+  {
+    // Component: Regis,
+    path: "/register",
+  },
+]);

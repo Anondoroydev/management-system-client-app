@@ -1,5 +1,7 @@
+import { Banner } from "./Banner";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+import { Navbar } from "./Navbar";
+
 
 interface IProps {
     children: React.ReactNode
@@ -9,6 +11,7 @@ export default function CommonLayout({ children }: IProps) {
         <div>
             <Navbar/>
             {children}
+            <Banner/>
             <Footer />
         </div>
     );
