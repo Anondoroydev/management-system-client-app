@@ -22,8 +22,7 @@ export const Topbar = () => {
                         <FaFacebookF className=' text-[14px] hover:text-[#4da528] '/>
                         <FaXTwitter className=' text-[14px]  hover:text-[#4da528] ' />
                         <FaVimeoV className=' text-[14px]  hover:text-[#4da528] '/>
-                        <FaLinkedinIn className=' text-[14px]  hover:text-[#4da528] '/>
-
+                        <FaLinkedinIn className=' text-[14px]  hover:text-[#4da528] '/> 
 
                     </div>
 
