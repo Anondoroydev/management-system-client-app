@@ -40,7 +40,7 @@ export const Banner = () => {
   return (
     <div className="relative w-full overflow-visible">
 
-      {/* GREEN SHAPES */}
+      
 
       {/* Light Green */}
       <div
