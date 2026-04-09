@@ -1,11 +1,9 @@
-import { Phone, MapPin, Mail, PlayCircle } from "lucide-react";
-import { Navbar } from "@/components/layout/Navbar";
+import { Phone, MapPin, Mail, PlayCircle } from "lucide-react"; 
 import Footer from "@/components/layout/Footer";
 
 export default function Contact() {
   return (
-    <div className="bg-white dark:bg-gray-900">
-      <Navbar />
+    <div className="bg-white dark:bg-gray-900"> 
       
       {/* Hero Section */}
       <div

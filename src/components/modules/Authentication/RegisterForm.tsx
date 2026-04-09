@@ -1,15 +1,22 @@
- 
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
-import {Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod"; 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Password from "@/components/ui/Password"; 
 import { toast } from "sonner";
-import { useRegisterMutation } from "@/redux/features/auth.api";
-import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Button } from "@/components/ui/button"; 
-import Password from "@/components/ui/Password";
+import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 
 const registerSchema = z
   .object({
@@ -65,23 +72,12 @@ export function RegisterForm({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900">
-      <Navbar />
-
-      {/* Hero Banner */}
-      <div
-        className="relative h-[250px] w-full bg-cover bg-center bg-no-repeat flex items-center justify-center"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 text-center text-white">
-          <h1 className="text-5xl font-bold mb-3">Register</h1>
-          <p className="text-lg">
-            <span className="text-[#ff970d]">Home</span> &gt; Register
-          </p>
-        </div>
+    <div className={cn("flex flex-col gap-6", className)} {...props}>
+      <div className="flex flex-col items-center gap-2 text-center">
+        <h1 className="text-2xl font-bold">Register your account</h1>
+        <p className="text-sm text-muted-foreground">
+          Enter your details to create an account
+        </p>
       </div>
 
       <div className="grid gap-6">
