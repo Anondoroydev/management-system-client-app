@@ -11,7 +11,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 const loginSchema = z.object({
-  email: z.string().email("Invalid email address"),
+  email:  z.email,
   password: z.string().min(1, "Password is required"),
 });
 

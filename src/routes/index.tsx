@@ -1,24 +1,32 @@
 import App from "@/App";
-import { createBrowserRouter } from "react-router";
-import { LoginForm } from "@/components/modules/Authentication/LoginForm";
-import { RegisterForm } from "@/components/modules/Authentication/RegisterForm";
 import Contact from "@/pages/Contact";
+// import About from "@/pages/About";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
+import Verify from "@/pages/Verify"; 
+import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
   {
     Component: App,
     path: "/",
+    children: [
+      {
+        Component: Contact,
+        path: "contact",
+      },
+    ],
   },
   {
+    Component: Login,
     path: "/login",
-    Component: LoginForm,
   },
   {
+    Component: Register,
     path: "/register",
-    Component: RegisterForm,
   },
   {
-    path: "/contact",
-    Component: Contact,
+    Component: Verify,
+    path: "/verify",
   },
 ]);
