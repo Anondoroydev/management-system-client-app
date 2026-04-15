@@ -1,5 +1,5 @@
 import { Banner } from "./Banner";
-import Footer from "./Footer";
+import Footer from "./Footer";  
 import { Navbar } from "./Navbar";
 
 
@@ -9,7 +9,7 @@ interface IProps {
 export default function CommonLayout({ children }: IProps) {
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             {children}
             <Banner/>
             <Footer />
