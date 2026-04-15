@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ModeToggle } from "./ModeToggle";
 import { Topbar } from "./Topbar";
-import { Menu, X, Search, Globe, Mail, Phone, ChevronDown } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Menu, X, Search, Mail, Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { FaFacebookF, FaLinkedinIn, FaVimeoV } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";  
@@ -16,134 +16,112 @@ const navlink = [
   { href: "/contact", label: "Contact" },
 ];
 
+// 🔥 Dashboard dropdown items (same as sidebar)
+const dashboardLinks = [
+  { label: "Dashboard", href: "" },
+  { label: "My Booking", href: "/booking" },
+  { label: "My Listing", href: "/listing" },
+  { label: "Add Tour", href: "/add-tour" },
+  { label: "My Favorites", href: "/favorites" },
+  { label: "My Profile", href: "/profile" },
+];
+
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
-  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("English");
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [openDropdown, setOpenDropdown] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const languages = [
-    { code: "EN", name: "English" },
-    { code: "BN", name: "Bangla" },
-    { code: "HI", name: "Hindi" },
-  ];
-
-  const currencies = [
-    { code: "USD", symbol: "$", name: "US Dollar" },
-    { code: "BDT", symbol: "৳", name: "Bangladeshi Taka" },
-    { code: "INR", symbol: "₹", name: "Indian Rupee" },
-  ];
-
-  const isContactPage = location.pathname === "/contact";
 
   return (
     <header className="animate-fade-in m-0">
       <Topbar />
+
       <nav className="mx-auto pr-4 flex justify-between items-center">
         <div className="bg-[#081e2a] py-8 px-18 [clip-path:polygon(0_0,80%_0,100%_100%,0_100%)]">
           <img src="/logo.png" alt="logo" className="w-32 h-auto" />
         </div>
 
+        {/* ===== Desktop Menu ===== */}
         <div className="hidden md:flex gap-5 px-3">
-          {navlink.map((link, index) => (
-            <button
-              key={index}
-              onClick={() => navigate(link.href)}
-              className="font-jakarta font-semibold text-[16px] px-3 hover:text-[#4da528] rounded-full duration-300 text-[#081e7d] tracking-wide"
-            >
-              {link.label}
-            </button>
-          ))}
+          {navlink.map((link, index) => {
+            // 🔥 ONLY Dashboard updated
+            if (link.label === "Dashboard") {
+              return (
+                <div
+                  key={index}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(true)}
+                  onMouseLeave={() => setOpenDropdown(false)}
+                >
+                  {/* Main Button */}
+                  <button
+                    onClick={() => navigate("/dashboard")}
+                    className="font-jakarta font-semibold text-[16px] px-3 hover:text-[#4da528] rounded-full duration-300 text-[#081e7d] tracking-wide"
+                  >
+                    Dashboard
+                  </button>
+
+                  {/* Dropdown */}
+                  <div
+                    className={`absolute top-10 left-0 w-52 bg-white shadow-xl rounded-md overflow-hidden transition-all duration-300 origin-top z-50
+                    ${
+                      openDropdown
+                        ? "opacity-100 scale-y-100"
+                        : "opacity-0 scale-y-0 pointer-events-none"
+                    }`}
+                  >
+                    {dashboardLinks.map((item, i) => (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          navigate(item.href);
+                          setOpenDropdown(false);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#4da528]/10 hover:text-[#4da528]"
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            // 🔹 Other nav links unchanged
+            return (
+              <button
+                key={index}
+                onClick={() => navigate(link.href)}
+                className="font-jakarta font-semibold text-[16px] px-3 hover:text-[#4da528] rounded-full duration-300 text-[#081e7d] tracking-wide"
+              >
+                {link.label}
+              </button>
+            );
+          })}
         </div>
 
+        {/* ===== Right Section ===== */}
         <div className="hidden md:flex items-center gap-6">
-          {/* Language Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => {
-                setIsLangOpen(!isLangOpen);
-                setIsCurrencyOpen(false);
-              }}
-              className="flex items-center gap-1 text-[#081e7d] hover:text-[#4da528] transition-colors"
-            >
-              <Globe size={18} className="text-[#4da528]" />
-              <span className="text-sm font-semibold">{selectedLang}</span>
-              <ChevronDown size={14} className={`transition-transform ${isLangOpen ? "rotate-180" : ""}`} />
-            </button>
-            {isLangOpen && (
-              <div className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-50 min-w-[140px] border">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => {
-                      setSelectedLang(lang.name);
-                      setIsLangOpen(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-[#4da528] hover:text-white transition-colors"
-                  >
-                    {lang.name}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Currency Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => {
-                setIsCurrencyOpen(!isCurrencyOpen);
-                setIsLangOpen(false);
-              }}
-              className="flex items-center gap-1 text-sm font-semibold text-[#081e7d] hover:text-[#4da528] transition-colors"
-            >
-              <span>{selectedCurrency}</span>
-              <ChevronDown size={14} className={`transition-transform ${isCurrencyOpen ? "rotate-180" : ""}`} />
-            </button>
-            {isCurrencyOpen && (
-              <div className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-50 min-w-[120px] border">
-                {currencies.map((curr) => (
-                  <button
-                    key={curr.code}
-                    onClick={() => {
-                      setSelectedCurrency(curr.code);
-                      setIsCurrencyOpen(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-[#4da528] hover:text-white transition-colors"
-                  >
-                    {curr.code} - {curr.name}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
           <button className="text-[#081e7d] hover:text-[#4da528] transition-colors">
             <Search size={20} />
           </button>
 
           <ModeToggle />
 
-          {/* Conditional Login/Register - ONLY on Contact Page */}
-          {isContactPage && (
-            <div className="flex items-center gap-3">
-              <Button 
-                className="bg-[#ff970d] hover:bg-[#e08600] text-white"
-                onClick={() => navigate("/login")}
-              >
-                Sign In
-              </Button>
-              <Button 
-                className="bg-[#4da528] hover:bg-[#ff970d] text-white"
-                onClick={() => navigate("/register")}
-              >
-                Register
-              </Button>
-            </div>
-          )}
+          {/* Login and Register Buttons */}
+          <div className="flex items-center gap-3">
+            <Button 
+              className="bg-[#ff970d] hover:bg-[#e08600] text-white"
+              onClick={() => navigate("/login")}
+            >
+              Sign In
+            </Button>
+            <Button 
+              className="bg-[#4da528] hover:bg-[#ff970d] text-white"
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </Button>
+          </div>
 
           <button
             onClick={() => setIsMobileMenuOpen(true)}
@@ -153,6 +131,7 @@ export const Navbar = () => {
           </button>
         </div>
 
+        {/* ===== Mobile ===== */}
         <div className="md:hidden flex items-center gap-2">
           <ModeToggle />
           <button
@@ -164,7 +143,7 @@ export const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Sidebar */}
+      {/* ===== Mobile Sidebar (UNCHANGED) ===== */}
       {isMobileMenuOpen && (
         <>
           <div
@@ -218,29 +197,27 @@ export const Navbar = () => {
                 </a>
               </div>
 
-              {/* Mobile menu teo conditional buttons */}
-              {isContactPage && (
-                <div className="flex flex-col gap-3 mt-2">
-                  <Button 
-                    className="w-full bg-[#ff970d] hover:bg-[#e08600] text-white"
-                    onClick={() => {
-                      navigate("/login");
-                      setIsMobileMenuOpen(false);
-                    }}
-                  >
-                    Sign In
-                  </Button>
-                  <Button 
-                    className="w-full bg-[#4da528] hover:bg-[#ff970d] text-white"
-                    onClick={() => {
-                      navigate("/register");
-                      setIsMobileMenuOpen(false);
-                    }}
-                  >
-                    Register
-                  </Button>
-                </div>
-              )}
+              {/* Mobile Menu Login and Register Buttons */}
+              <div className="flex flex-col gap-3 mt-2">
+                <Button 
+                  className="w-full bg-[#ff970d] hover:bg-[#e08600] text-white"
+                  onClick={() => {
+                    navigate("/login");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Sign In
+                </Button>
+                <Button 
+                  className="w-full bg-[#4da528] hover:bg-[#ff970d] text-white"
+                  onClick={() => {
+                    navigate("/register");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Register
+                </Button>
+              </div>
 
               <div className="flex flex-col gap-3 mt-4">
                 {navlink.map((link, index) => (

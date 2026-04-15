@@ -1,4 +1,7 @@
 import App from "@/App";
+import DashboardLayout from "@/components/layout/DashboardLayout";
+import { Dashboard } from "@/pages/user_Dahsboard/Dashboard/Dashboard"; // Added by Atikur
+import Analytics from "@/pages/admin/Analytics";
 import Contact from "@/pages/Contact";
 // import About from "@/pages/About";
 import Login from "@/pages/Login";
@@ -17,6 +20,22 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    Component: DashboardLayout,
+    path: "/admin",
+    children: [
+      {
+        Component: Analytics,
+        path: "analytics",
+      },
+    ],
+  },
+  // Added By Atik For user Dashboard
+    {
+    Component: Dashboard, 
+    path: "/dashboard",
+  },
+
   {
     Component: Login,
     path: "/login",
