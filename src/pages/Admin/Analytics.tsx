@@ -1,10 +1,9 @@
-// src/pages/admin/Analytics.tsx 
-import { Outlet } from 'react-router'
+// src/pages/admin/Analytics.tsx  
 
 export default function Analytics() {
   return (
     <div>
-       <Outlet/>
+      <h1>this is Analytics</h1>
     </div>
   )
 }
