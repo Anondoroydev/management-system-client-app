@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { ModeToggle } from "./ModeToggle";
+import Logo from "@/assets/logo.png";
 import { Topbar } from "./Topbar";
 import { Menu, X, Search, Mail, Phone } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FaFacebookF,   FaVimeoV, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaVimeoV, FaLinkedinIn } from "react-icons/fa"; 
 
 // ✅ RTK Query Auth
 import {
@@ -47,7 +48,7 @@ export const Navbar = () => {
       <nav className="mx-auto pr-4 flex justify-between items-center">
         {/* Logo */}
         <div className="bg-[#081e2a] py-8 px-18 [clip-path:polygon(0_0,80%_0,100%_100%,0_100%)]">
-          <img src="/logo.png" alt="logo" className="w-32 h-auto" />
+          <img src={Logo}alt="logo" className="w-32 h-auto" />
         </div>
 
         {/* ===== Desktop Menu ===== */}
