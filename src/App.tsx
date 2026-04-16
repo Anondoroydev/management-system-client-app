@@ -3,6 +3,7 @@ import CommonLayout from "./components/layout/CommonLayout";
 import { generateRoutes } from "./utils/generarateRoutes";
 import { adminSidebarItems } from "./routes/adminSidebarItems";
 
+
 function App() {
 
   console.log(generateRoutes(adminSidebarItems))
